@@ -16,7 +16,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/amandavkar/Microservices-Movie-Info-Service.git'
+        git 'https://github.com/amandavkar/Microservice-Movie-Info-Service.git'
       }
     }
 	
