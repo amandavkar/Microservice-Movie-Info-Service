@@ -55,17 +55,17 @@ pipeline {
 	  }
 	}
 	
-	stage('Copy kustomization, deployment and service YAML files to Kubernetes master') {
-	  steps{
-	      sh "scp -r movie-info-service.yml vagrant@k8s-master:/home/vagrant"
-	  }
-	}
-	
-	stage('Execute Ansible playbook to deploy service in Kubernetes') {
-	  steps{
-		ansiblePlaybook installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: 'playbook-movie-info-service.yml'
-	  }
-	}
+//	stage('Copy kustomization, deployment and service YAML files to Kubernetes master') {
+//	  steps{
+//	      sh "scp -r movie-info-service.yml vagrant@k8s-master:/home/vagrant"
+//	  }
+//	}
+//	
+//	stage('Execute Ansible playbook to deploy service in Kubernetes') {
+//	  steps{
+//		ansiblePlaybook installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: 'playbook-movie-info-service.yml'
+//	  }
+//	}
   }
 	
 }
