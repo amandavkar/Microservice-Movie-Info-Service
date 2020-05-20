@@ -1,0 +1,41 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: movieinfo     # Name of the kubernetes resource
+  labels:                     # Labels that will be applied to this resource
+    app: movieinfo
+spec:
+  replicas: 1                   # tells deployment to run 1 pod matching the template
+  selector:
+    matchLabels:                # The deployment applies to any pods mayching the specified labels
+      app: movieinfo
+
+  template:                     # Template for creating the pods in this deployment
+    metadata:
+      labels:                   # Labels that will be applied to each Pod in this deployment
+        app: movieinfo
+
+    spec:                       # Spec for the containers that will be run in the Pods
+      containers:
+      - name: movieinfo
+        image: amandavkar/movie-info-service
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: movieinfo
+  labels:
+    app: movieinfo
+
+spec:
+  selector:
+    app: movieinfo
+  type: ClusterIP # Can use type as LoadBalancer if more than 1 replica
+  ports:
+  - port: 8082
+    targetPort: 8082
+    protocol: TCP
