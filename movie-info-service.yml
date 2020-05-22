@@ -34,7 +34,7 @@ metadata:
 spec:
   selector:
     app: movieinfo
-  type: ClusterIP # Can use type as LoadBalancer if more than 1 replica
+  type: NodePort
   ports:
   - port: 8082
     targetPort: 8082
